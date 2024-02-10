@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dynamic Content</title>
+</head>
+<body>
+    <div id="imageContainer"></div>
+
+    <script>
+        // Your JavaScript code for fetching and displaying Discord image
+        const channelId = '1205343348265721926';
+        const token = 'MTExMzI2MDAwMjU1NjI2ODU4NQ.Gbn3VG.bRPwgjwBequKdLJcZgFB_8B5RE-qnKm_ItUu3M'; // Replace with your Discord API token
+
+        fetch(`https://discord.com/api/channels/1205343348265721926/messages?limit=1`, {
+            headers: {
+                Authorization: `Bot MTExMzI2MDAwMjU1NjI2ODU4NQ.Gbn3VG.bRPwgjwBequKdLJcZgFB_8B5RE-qnKm_ItUu3M`,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            const recentImage = data[0]?.attachments[0]?.url;
+
+            if (recentImage) {
+                const imageContainer = document.getElementById('imageContainer');
+                const imgElement = document.createElement('img');
+                imgElement.src = recentImage;
+                imgElement.alt = 'Recent Discord Image';
+                imageContainer.appendChild(imgElement);
+            } else {
+                console.log('No attachments found.');
+            }
+        })
+        .catch(error => console.error('Error fetching Discord data:', error));
+    </script>
+</body>
+</html>
