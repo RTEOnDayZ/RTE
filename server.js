@@ -129,7 +129,8 @@ app.get('/', (req, res) => {
   res.send(imageBuffer);
 });
 
-client.login('MTExMzI2MDAwMjU1NjI2ODU4NQ.GyUGk_.EUPmMK_qn4_CHu1X9qvm2Cln97f5JKGybHZOdw'); // Replace with your Discord bot token
+client.login(process.env.EXAMPLE_KEY);
+ // Replace with your Discord bot token
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on port ${port}`);
